@@ -1,6 +1,6 @@
-# IonMD: methods, algorithms and parallelisation
+# ion_md: methods, algorithms and parallelisation
 
-This document describes how IonMD works internally: the physical model, the
+This document describes how ion_md works internally: the physical model, the
 numerical methods, how the work is parallelised with OpenMP and CUDA, and the
 measured performance on the target node (8 CPU cores, 2 × Tesla V100-SXM2-32GB).
 It ends with a code review: known limitations and possible improvements.
@@ -63,9 +63,7 @@ The equation of motion of ion *i* (mass $m_i$, charge $q_i = Z_i e$) is
 (Zhang *et al.*, PRA **76**, 012719, Eq. 1):
 
 $$
-m_i \ddot{\vec r}_i = \vec F^{\mathrm{trap}}_i + \vec F^{\mathrm{C}}_i
-  + \vec F^{\mathrm{laser}}_i + \vec F^{\mathrm{exc}}_i
-  \quad + \text{stochastic heating kicks}.
+m_i \ddot{\vec r}_i = \vec F^{\mathrm{trap}}_i + \vec F^{\mathrm{C}}_i + \vec F^{\mathrm{laser}}_i + \vec F^{\mathrm{exc}}_i + \text{stochastic heating kicks}.
 $$
 
 ### 2.1 Linear Paul trap ([`trap.hpp`](../include/ionmd/trap.hpp))
@@ -73,12 +71,10 @@ $$
 The potential near the trap centre is
 
 $$
-\phi(\vec r, t) = \frac{(U_{dc} + V_{rf}\cos(\Omega t + \varphi))(x^2 - y^2)}{2 r_0^2}
-                + \frac{\kappa U_{ec}(2z^2 - x^2 - y^2)}{2 z_0^2},
+\phi(\vec r, t) = \frac{(U_{dc} + V_{rf}\cos(\Omega t + \varphi))(x^2 - y^2)}{2 r_0^2} + \frac{\kappa U_{ec}(2z^2 - x^2 - y^2)}{2 z_0^2},
 $$
 
-giving the Mathieu parameters $q = 2QV_{rf}/(m r_0^2\Omega^2)$ and
-$a = 4QU_{dc}/(m r_0^2\Omega^2)$. There are two ways to compute the trap force:
+giving the Mathieu parameters $q = 2QV_{rf}/(m r_0^2\Omega^2)$ and $a = 4QU_{dc}/(m r_0^2\Omega^2)$. There are two ways to compute the trap force:
 
 * **Full rf force** (`forces.micromotion`): $\vec F = -Q\nabla\phi(\vec r, t)$,
   evaluated at every step. This reproduces the micromotion at frequency Ω. The
@@ -87,10 +83,10 @@ $a = 4QU_{dc}/(m r_0^2\Omega^2)$. There are two ways to compute the trap force:
 * **Pseudopotential** (`forces.secular`): the time-averaged harmonic potential
   with spring constants $k = m\omega^2$,
 
-  $$
-  \omega_z^2 = \frac{2Q\kappa U_{ec}}{m z_0^2},\qquad
-  \omega_{x,y}^2 = \frac{\Omega^2}{4}\left(\pm a + \frac{q^2}{2}\right) - \frac{\omega_z^2}{2}.
-  $$
+$$
+\omega_z^2 = \frac{2Q\kappa U_{ec}}{m z_0^2},\qquad
+\omega_{x,y}^2 = \frac{\Omega^2}{4}\left(\pm a + \frac{q^2}{2}\right) - \frac{\omega_z^2}{2}.
+$$
 
   There is no micromotion, so the time step only has to resolve the secular
   motion (hundreds of kHz). Steps of 20 ns or more are possible, about 5× fewer
@@ -164,7 +160,7 @@ Maxwell–Boltzmann velocities at `initial_temperature`.
 
 ## 3. Time integration
 
-IonMD uses the **velocity Verlet** scheme (leapfrog in kick–drift–kick form),
+ion_md uses the **velocity Verlet** scheme (leapfrog in kick–drift–kick form),
 in [`Simulation::advance`](../lib/simulation.cpp):
 
 $$
