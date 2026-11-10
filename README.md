@@ -3,9 +3,7 @@
 ion_md is a molecular dynamics (MD) simulation of ions in a linear Paul trap. Newton's equations of motion of every ion are integrated with the velocity Verlet (leapfrog) scheme. The physical model follows
 
 - C. B. Zhang *et al.*, Phys. Rev. A **76**, 012719 (2007) [[1]](#references), and
-- C. B. Zhang, PhD thesis, Heinrich-Heine-Universität Düsseldorf (2008) [[2]](#references),
-
-and the earlier but incomplete IonMD version by Michael V. DePalatis [[3]](#references).
+- C. B. Zhang, PhD thesis, Heinrich-Heine-Universität Düsseldorf (2008) [[2]](#references).
 
 The O(N) parts of every step run in parallel with **OpenMP**; the O(N²) Coulomb interaction (the dominant cost) runs either on the CPU (OpenMP + SIMD) or on one or more **NVIDIA GPUs (CUDA)**.
 
