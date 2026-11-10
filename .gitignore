@@ -1,0 +1,18 @@
+*~
+build/
+results/
+output/
+__pycache__/
+*.pyc
+*.o
+*.so
+*.bin
+.ipynb_checkpoints/
+
+# HPC log files
+hpc_nvidia-smi.txt
+hpc_module_avail.txt
+
+# Large / archived reference material
+references/IonMD-thesis/
+references/IonMD-archive-json/

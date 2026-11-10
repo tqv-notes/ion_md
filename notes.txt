@@ -1,0 +1,37 @@
+to run locally on laptop
+
+========================== new ==================================
+cd ~/OneDrive/Desktop/Cpp/ion_md
+export PATH=/c/msys64/ucrt64/bin:$PATH        # MSYS2 GCC compiler
+PY=/c/Users/quangvu197/AppData/Local/Programs/Python/Python313/python   # Python that has numpy/matplotlib
+
+# 1. Build (CPU + OpenMP only, no CUDA)
+cmake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j 8
+
+# 2. Unit tests
+build/tests/tests.exe
+
+# 3. Physics test suite + figures (quick subset ~30 s; leave out TESTS=... for all, ~2–4 min)
+BUILD_DIR=build THREADS=8 PYTHON=$PY TESTS="01 02 03 05" bash scripts/run_tests.sh results/tests
+
+# 4. Optional: small CPU benchmark (a few minutes)
+BUILD_DIR=build PYTHON=$PY SIZES="100 300 1000 3000" GPU_LIST="" TARGET_SECONDS=1 \
+    bash scripts/run_benchmark.sh results/bench
+
+
+========================== old ==================================
+cd ~/OneDrive/Desktop/Cpp/ion_md
+export PATH=/c/msys64/ucrt64/bin:$PATH          # use the MSYS2 GCC
+
+# 1. Build (CPU + OpenMP only), about 15 s
+cmake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j 8
+
+# 2. Unit tests + a fast subset of the physics tests + analysis, about 30 s
+BUILD_DIR=build THREADS=8 TESTS="01 02 03 05" \
+PYTHON="/c/Users/quangvu197/AppData/Local/Programs/Python/Python313/python" \
+bash scripts/run_tests.sh results/quick
+
+
+

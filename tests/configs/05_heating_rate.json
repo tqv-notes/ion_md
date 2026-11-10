@@ -1,0 +1,12 @@
+{
+  "_description": "Velocity-kick heating without cooling (Zhang et al. Eqs. 10-12, Figs. 6-7). The total energy must grow linearly with slope N kB h, while kinetic and potential energies grow non-linearly.",
+  "simulation": { "dt": 20e-9, "num_steps": 100000, "equilibrate_steps": 20000,
+                  "seed": 5, "backend": "auto", "progress_every": 25000 },
+  "forces": { "secular": true, "coulomb": true, "stochastic": true },
+  "stochastic": { "heating_rate": 50.0 },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 1.0 },
+  "ions": [ { "label": "Ca40", "mass": 40, "charge": 1, "count": 200 } ],
+  "initial": { "mode": "random", "radial_extent": 50e-6, "axial_extent": 120e-6 },
+  "output": { "record_every": 0, "diag_every": 500 }
+}

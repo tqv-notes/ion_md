@@ -1,0 +1,10 @@
+{
+  "_description": "Single 40Ca+ ion in the full time-dependent rf field (micromotion). The radial spectrum shows the secular frequency and the micromotion sidebands at f_rf +- f_x; the secular frequency must agree with the adiabatic (pseudopotential) value to O(q^2).",
+  "simulation": { "dt": 2.0113e-9, "num_steps": 262144, "seed": 2, "backend": "cpu" },
+  "forces": { "secular": false, "micromotion": true, "coulomb": true },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 1.0 },
+  "ions": [ { "label": "Ca40", "mass": 40, "charge": 1, "count": 1 } ],
+  "initial": { "positions": [[3e-6, 0.0, 10e-6]] },
+  "output": { "record_every": 2, "diag_every": 10000 }
+}

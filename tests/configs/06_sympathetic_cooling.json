@@ -1,0 +1,20 @@
+{
+  "_description": "Multi-species crystal: laser-cooled 40Ca+ sympathetically cooling N2+ (28 u) and CaO+ (56 u) ions in the presence of collisional heating (Zhang et al. Secs. II C-E). Lighter ions sit closer to the trap axis, heavier ions outside; all species reach a low secular temperature. Simulated CCD images are produced per species.",
+  "simulation": { "dt": 20e-9, "num_steps": 150000, "equilibrate_steps": 30000,
+                  "initial_temperature": 0.05, "seed": 6, "backend": "auto",
+                  "progress_every": 25000 },
+  "forces": { "secular": true, "coulomb": true, "doppler": true, "stochastic": true },
+  "stochastic": { "heating_rate": 20.0 },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 1.0 },
+  "lasers": [ { "khat": [0, 0, 1], "beta": 2e-22, "F0": 1e-21, "directional": true } ],
+  "ions": [
+    { "label": "Ca40", "mass": 40, "charge": 1, "count": 400, "laser_cooled": true },
+    { "label": "N2",   "mass": 28, "charge": 1, "count": 60,  "laser_cooled": false },
+    { "label": "CaO",  "mass": 56, "charge": 1, "count": 60,  "laser_cooled": false }
+  ],
+  "initial": { "mode": "random", "radial_extent": 80e-6, "axial_extent": 200e-6 },
+  "output": { "record_every": 1000, "diag_every": 500,
+              "ccd": { "enabled": true, "bins": 400, "extent": 350e-6,
+                       "every": 10, "start": 75000 } }
+}

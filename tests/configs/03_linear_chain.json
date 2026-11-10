@@ -1,0 +1,12 @@
+{
+  "_description": "Ten 40Ca+ ions in a weak axial potential form a linear chain after the damped minimisation. Positions are compared with the numerically solved equilibrium (D. F. V. James, Appl. Phys. B 66, 181 (1998)).",
+  "simulation": { "dt": 20e-9, "num_steps": 20000, "equilibrate_steps": 200000,
+                  "equilibrate_beta": 1e-20, "seed": 3, "backend": "cpu" },
+  "forces": { "secular": true, "coulomb": true, "doppler": true },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 0.3 },
+  "lasers": [ { "khat": [0, 0, 1], "beta": 2e-22, "F0": 0.0 } ],
+  "ions": [ { "label": "Ca40", "mass": 40, "charge": 1, "count": 10 } ],
+  "initial": { "mode": "chain", "axial_extent": 60e-6, "radial_extent": 2e-6 },
+  "output": { "record_every": 100, "diag_every": 200 }
+}

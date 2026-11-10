@@ -1,0 +1,12 @@
+{
+  "_description": "Template for performance benchmarks; the ion number, backend, threads and GPUs are overridden on the command line by scripts/run_benchmark.sh.",
+  "simulation": { "dt": 20e-9, "num_steps": 100, "seed": 10, "backend": "cpu",
+                  "abort_radius": 0, "verbosity": 0 },
+  "forces": { "secular": true, "coulomb": true, "doppler": true },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 1.0 },
+  "lasers": [ { "khat": [0, 0, 1], "beta": 2e-22, "F0": 0.0 } ],
+  "ions": [ { "label": "Ca40", "mass": 40, "charge": 1, "count": 1000 } ],
+  "initial": { "mode": "random", "radial_extent": 100e-6, "axial_extent": 300e-6 },
+  "output": { "record_every": 0, "diag_every": 0 }
+}

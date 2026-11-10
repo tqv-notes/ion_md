@@ -1,0 +1,16 @@
+{
+  "_description": "Laser-cooled 3-D crystal with full rf micromotion (Zhang et al. Sec. II B, Fig. 2). The secular temperature (velocities averaged over each rf period, Eq. 6) is far below the kinetic temperature that includes the driven micromotion energy (Eq. 7).",
+  "simulation": { "dt": 2.0113e-9, "num_steps": 150000, "equilibrate_steps": 20000,
+                  "initial_temperature": 0.02, "seed": 8, "backend": "auto",
+                  "progress_every": 25000 },
+  "forces": { "micromotion": true, "coulomb": true, "doppler": true, "stochastic": true },
+  "stochastic": { "heating_rate": 5.0 },
+  "trap": { "r0": 3.5e-3, "z0": 2.7e-3, "kappa": 0.248, "f_rf": 4.972e6,
+            "V_rf": 300, "U_dc": 0.0, "U_ec": 1.0 },
+  "lasers": [ { "khat": [0, 0, 1], "beta": 2e-22, "F0": 0.0 } ],
+  "ions": [ { "label": "Ca40", "mass": 40, "charge": 1, "count": 150 } ],
+  "initial": { "mode": "random", "radial_extent": 40e-6, "axial_extent": 100e-6 },
+  "output": { "record_every": 0, "diag_every": 1000,
+              "ccd": { "enabled": true, "bins": 300, "extent": 120e-6,
+                       "every": 5, "start": 50000 } }
+}
