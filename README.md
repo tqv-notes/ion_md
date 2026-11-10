@@ -105,7 +105,7 @@ python3 python/plot_run.py results/symp            # figures in results/symp/fig
 
 Here is one of the figures from this simulation:
 
-![image](https://github.com/tqv-notes/ion_md/blob/main/sympathic_cooling_crystal.jpg)
+![image](https://github.com/tqv-notes/ion_md/blob/main/sympathic_cooling_crystal.png)
 
 Command line options (override the configuration file):
 
@@ -197,7 +197,7 @@ Output files (in the output directory):
    (`python/plot_benchmark.py`).
 
    Here is the result from the benchmark test:
-   ![image](https://github.com/tqv-notes/ion_md/blob/main/benchmark.jpg)
+   ![image](https://github.com/tqv-notes/ion_md/blob/main/benchmark.png)
 
 `qsub scripts/job_tests.sh` (PBS), `sbatch scripts/job_tests.sh` (SLURM) or
 `bash scripts/job_tests.sh` (directly on a GPU node) builds the code and runs
