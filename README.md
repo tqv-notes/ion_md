@@ -30,9 +30,9 @@ $$
 
 - **Trap** (`trap` section): Potential
 
-  $$
-  \phi = \frac{(U_{dc} + V_{rf}\cos\Omega t)(x^2-y^2)}{2 r_0^2} + \frac{\kappa U_{ec}(2z^2 - x^2 - y^2)}{2 z_0^2},
-  $$
+$$
+\phi = \frac{(U_{dc} + V_{rf}\cos\Omega t)(x^2-y^2)}{2 r_0^2} + \frac{\kappa U_{ec}(2z^2 - x^2 - y^2)}{2 z_0^2},
+$$
 
   i.e. Mathieu parameters $q = 2QV_{rf}/(m r_0^2 \Omega^2)$ and $a = 4QU_{dc}/(m r_0^2 \Omega^2)$. Either the **pseudopotential** (time-averaged, large time steps; `forces.secular`) or the **full rf field with micromotion** (`forces.micromotion`, time step ≈ 1/100 of the rf period).
 
